@@ -288,9 +288,16 @@ class SimplicialComplexOperators {
                   }
                 }
                 if (k == 1) {
-                  for (let edge of d.edges) {
-                    boundary.addVertex(this.mesh.edges[edge].halfedge.vertex.index);
-                    boundary.addVertex(this.mesh.edges[edge].halfedge.twin.vertex.index);
+                  for (let vertex of d.vertices) {
+                    count = 0;
+                    for (let edge of this.mesh.vertices[vertex].adjacentEdges()) {
+                      if (d.edges.has(edge.index)) {
+                        count += 1;
+                      }
+                    }
+                    if (count == 1) {
+                      boundary.addVertex(vertex);
+                    }
                   }
                 }
                 return boundary;
