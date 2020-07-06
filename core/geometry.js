@@ -199,9 +199,9 @@ class Geometry {
 	 * @returns {number}
 	 */
 	cotan(h) {
-		// TODO
-
-		return 0.0; // placeholder
+		let v1 = this.vector(h.next.twin);
+		let v2 = this.vector(h.prev);
+		return v1.dot(v2)/v1.cross(v2).norm();
 	}
 
 	/**
@@ -224,9 +224,11 @@ class Geometry {
 	 * @returns {number}
 	 */
 	barycentricDualArea(v) {
-		// TODO
-
-		return 0.0; // placeholder
+		let area = 0;
+		for (let h of v.adjacentHalfedges()) {
+			area += this.vector(h).cross(this.vector(h.twin.next)).norm();
+		}
+		return area/6;
 	}
 
 	/**

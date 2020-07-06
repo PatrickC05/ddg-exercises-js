@@ -73,7 +73,7 @@ class SimplicialComplexOperators {
          *  vertex i is in the given subset and 0 otherwise
          */
         buildVertexVector(subset) {
-                let vector = DenseMatrix.zeros(this.mesh.vertices.length,);
+                let vector = DenseMatrix.zeros(this.mesh.vertices.length);
                 for (let vertex of subset.vertices) {
                   vector.set(1, vertex);
                 }
